@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTAL</title>
+
+    <script src="https://kit.fontawesome.com/7f190006d9.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Changa:wght@200&family=Gothic+A1:wght@100&display=swap');
+    </style>
+    <style>
+        * {
+            font-family: 'Changa', sans-serif;
+            font-family: 'Archivo Black', sans-serif;
+            margin: 0;
+            padding: 0;
+
+            color: white;
+
+        }
+
+        body {
+            background: linear-gradient(196deg, #006DAE 1.61%, #002942 96.25%);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: cover;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .ball_background {
+            position: absolute;
+            left: -40rem;
+            bottom: -65rem;
+        }
+
+        .height {
+            height: 80rem;
+            width: 10rem;
+            background-color: #3100ae00;
+            margin: auto;
+        }
+
+        a {
+            color: rgb(109, 248, 255);
+        }
+
+
+        .header {
+            height: 50px;
+            width: 100;
+            background-color: aqua;
+        }
+
+
+        .container {
+            width: 30rem;
+            /* height: 45rem; */
+
+            padding: 3rem;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            border-radius: 5.75rem;
+            /* border: 2px solid rgba(255, 255, 255, 0.00); */
+            background: linear-gradient(45deg, rgb(255, 255, 255) -105%, rgba(255, 255, 255, 0));
+            box-shadow: 14px 18px 27.4px 5px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            /* gap: 3rem; */
+
+        }
+
+        .form {
+            /* height: 40rem; */
+            gap: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .login_text {
+            font-size: 3rem;
+            color: white;
+        }
+
+        input {
+            position: relative;
+
+            width: 28rem;
+            height: 0rem;
+            padding: 2rem;
+            /* flex-shrink: 0; */
+            border: none;
+            border-radius: 1.3rem;
+            background: rgba(0, 0, 0, 0.30);
+
+            font-size: 1.5rem;
+            transition: all .6s;
+        }
+
+
+        .inputs {
+
+            position: relative;
+
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+
+        }
+
+        .inputs label {
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            color: #b6b6b6;
+            font-weight: 700;
+            font-size: 1.5rem;
+            transform: translate(0%, -50%);
+
+            transition: all .4s;
+
+        }
+
+        .usuario label {
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            color: #b6b6b6;
+            font-weight: 700;
+            font-size: 2rem;
+            transform: translate(0%, -50%);
+
+        }
+
+        input:focus,
+        input:valid {
+            box-shadow: 0 0 0 0;
+            border: 0 none;
+            outline: 0;
+            background: rgba(0, 0, 0, 0.301);
+            scale: 1.01;
+        }
+
+        input:focus~label,
+        input:valid~label {
+            transform: translateY(-4rem);
+            color: aliceblue;
+        }
+
+        button {
+            --primary-color: #006DAE;
+            --secondary-color: #ffffff;
+            --hover-color: #bfa900;
+            --arrow-width: 1.5rem;
+            --arrow-stroke: .2rem;
+            box-sizing: border-box;
+            border: 0;
+            border-radius: 15px;
+            color: var(--secondary-color);
+            background: var(--primary-color);
+            display: flex;
+            transition: 0.2s background;
+            align-items: center;
+            gap: .6em;
+            font-weight: bold;
+            font-size: 1.5rem;
+            width: 13rem;
+            padding: 2rem;
+            border-radius: 2rem;
+            transition: scale .2s;
+        }
+
+        button .arrow-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button .arrow {
+            margin-top: 0px;
+            width: var(--arrow-width);
+            background: var(--primary-color);
+            height: var(--arrow-stroke);
+            position: relative;
+            transition: 0.2s;
+        }
+
+        button .arrow::before {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            border-radius: 3px;
+            border: solid var(--secondary-color);
+            border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+            display: inline-block;
+            top: -6px;
+            right: 3px;
+            transition: 0.2s;
+            padding: 6px;
+            transform: rotate(-45deg);
+        }
+
+        button:hover {
+            background-color: var(--hover-color);
+        }
+
+        button:hover .arrow {
+            background: var(--secondary-color);
+        }
+
+        button:hover .arrow:before {
+            right: 0;
+        }
+
+        button:active {
+            scale: .9;
+        }
+
+        .divider {
+            width: 21.6875rem;
+            height: .2rem;
+            border-radius: 23rem;
+            background: rgba(0, 0, 0, 0.50);
+        }
+
+        .icons {
+            width: 8rem;
+            height: 4rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+
+        }
+
+        i {
+            font-size: 1px;
+            color: rgba(255, 255, 255, 0.651);
+            transition: color 1s;
+
+        }
+
+        i:hover {
+            color: rgb(255, 255, 255);
+            transition: .4s;
+
+        }
+
+        .register p,
+        .register a {
+            font-family: 'Gothic A1', sans-serif;
+        }
+
+
+        .completo {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            /* background-color: #bfa900; */
+            backdrop-filter: blur(0px);
+
+            opacity: 0%;
+            transition: all 1s;
+
+            pointer-events: none
+        }
+
+        .completo2 {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            /* background-color: #bfa900; */
+            backdrop-filter: blur(10px);
+
+            opacity: 100%;
+            transition: all 1s;
+            pointer-events: all;
+        }
+
+        .completo div {
+            max-width: 40rem;
+            margin: auto;
+            position: relative;
+            top: 50%;
+            text-align: center;
+            font-size: 2rem;
+
+            transform: translate(0%, -50%);
+        }
+
+
+
+        @media screen and (max-width: 1200px) {
+            .container {
+                zoom: 80%;
+                transform: translate(-50%, -50%);
+            }
+
+            .height {
+                height: 50rem;
+            }
+
+        }
+
+        @media screen and (max-width: 720px) {
+            .container {
+                zoom: 60%;
+                ;
+                transform: translate(-50%, -50%);
+
+
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg class="ball_background" width="1792" height="1792" viewBox="0 0 1792 1792" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_d_182_45)">
+            <circle cx="855" cy="912" r="842" fill="url(#paint0_linear_182_45)" fill-opacity="0.2"
+                shape-rendering="crispEdges" />
+        </g>
+        <defs>
+            <filter id="filter0_d_182_45" x="0.300003" y="0.300003" width="1791.4" height="1791.4"
+                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha" />
+                <feMorphology radius="25" operator="erode" in="SourceAlpha" result="effect1_dropShadow_182_45" />
+                <feOffset dx="41" dy="-16" />
+                <feGaussianBlur stdDeviation="39.35" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_182_45" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_182_45" result="shape" />
+            </filter>
+            <linearGradient id="paint0_linear_182_45" x1="1394" y1="367" x2="825" y2="1234.5"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#006DAE" />
+                <stop offset="1" stop-color="#004A77" />
+            </linearGradient>
+        </defs>
+    </svg>
+    <div class="container">
+        <h2 class="login_text">REGISTRE-SE</h2>
+
+
+        <form class="form" id="signup-form">
+            <div class="inputs">
+                <input required type="text" id="nameInp">
+                <label for="nameInp">NOME COMPLETO</label>
+            </div>
+
+            <div class="inputs">
+                <input required type="tel" id="phoneInp" inputmode="numeric">
+                <label for="phoneInp">NUMERO </label>
+            </div>
+
+            <div class="inputs">
+                <input required type="email" id="usuarioInp">
+                <label for="usuarioInp">E-MAIL</label>
+            </div>
+
+            <div class="inputs">
+                <input required type="password" id="passwordInp">
+                <label for="passwordInp">SENHA</label>
+            </div>
+
+            <button type="submit">
+                registrar
+                <div class="arrow-wrapper">
+                    <div class="arrow"></div>
+            </button>
+        </form>
+
+
+        <div class="divider"></div>
+
+
+        <div class="icons">
+            <i id="GOOGLElogin" class="fa-brands fa-google fa-3x"></i>
+        </div>
+
+        <div class="register">
+            <p>JA TEM CADASTRO? <a href="./LOGIN.html">FAÇA LOGIN</a></p>
+        </div>
+
+    </div>
+
+    <div class="completo">
+        <div>
+            <h2>Feliz por tê-lo(a) aqui! Vá para o <a href="./LOGIN.html">LOGIN</a> 😊</h2>
+
+        </div>
+
+    </div>
+
+    <div class="height"></div>
+
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, get, child, set, ref } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmtng-wk0NNawnBfXLkHHg4qLhonSiVZ4",
+            authDomain: "portal-f41d4.firebaseapp.com",
+            databaseURL: "https://portal-f41d4-default-rtdb.firebaseio.com",
+            projectId: "portal-f41d4",
+            storageBucket: "portal-f41d4.appspot.com",
+            messagingSenderId: "818353305477",
+            appId: "1:818353305477:web:2ff5be76fc19d76aabb6ec",
+            measurementId: "G-FNG514GWPW"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        let nameInp = document.getElementById('nameInp')
+        let phoneInp = document.getElementById('phoneInp')
+        let passwordInp = document.getElementById('passwordInp')
+        let signupForm = document.getElementById('signup-form')
+
+        let completo = document.querySelector('.completo')
+
+
+        let RegisterUser = evt => {
+            evt.preventDefault();
+
+            createUserWithEmailAndPassword(auth, usuarioInp.value, passwordInp.value, phoneInp.value)
+                .then((credentials) => {
+                    // alert('E-mail criado com sucesso, Vá para o login')
+                    credentials.user.phoneNumber = phoneInp.value
+                    set(ref(db, 'UsersAuthList/' + credentials.user.uid), {
+                        NomeCompleto: nameInp.value,
+                        telefone: phoneInp.value,
+                        TipoDeTreino: "indefinido"
+                    }
+                    )
+                    completo.classList.add("completo2")
+                })
+                .catch((error) => {
+                    alert(error.message);
+                    console.log(error.code);
+                    console.log(error.message);
+                })
+        }
+        signupForm.addEventListener('submit', RegisterUser)
+
+        //necessario para realizar o login com o GOOGLE
+        import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        let GoogleLogin = document.getElementById('GOOGLElogin')
+        const providerGOOGLE = new GoogleAuthProvider()
+        const dbref = ref(db);
+
+
+        function verificarUsuario() {
+            signInWithPopup(auth, providerGOOGLE)
+                .then((result) => {
+                    const user = result.user;
+                    console.log(user);
+                    get(child(dbref, 'UsersAuthListWithGoogle/' + user.displayName)).then(snapshot => {
+                        console.log(snapshot.val())
+                        if (!snapshot.val()) {
+
+                            set(ref(db, 'UsersAuthListWithGoogle/' + user.displayName), {
+                                NomeCompleto: user.displayName,
+                                Email: user.email,
+                                TipoDeTreino: "indefinido"
+
+                            }
+                            ).then((credentials) => {
+                                get(child(dbref, 'UsersAuthListWithGoogle/' + user.displayName)).then((snapshot) => {
+                                    console.log(snapshot.val());
+                                    if (snapshot.exists) {
+                                        sessionStorage.setItem("user-info", JSON.stringify({
+                                            firstname: snapshot.val(),
+                                        }))
+                                        sessionStorage.setItem('user-credentials', JSON.stringify(user))
+                                        setTimeout(() => { window.location.href = 'home.html' }, 1000)
+                                    }
+                                })
+                            })
+
+                                .catch((error) => {
+                                    const errorCode = error.code;
+                                    const errorMessage = error.message;
+                                })
+
+
+
+                        } else { alert("essa conta Google ja esta cadastrada, vá para o Login") }
+                    }
+                    )
+
+                })
+
+        }
+
+
+        // const signIn = async () => {
+        //     signInWithPopup(auth, providerGOOGLE)
+        //         .then((result) => {
+        //             const user = result.user;
+        //             console.log(user);
+
+        //             set(ref(db, 'UsersAuthListWithGoogle/' + user.displayName), {
+        //                 NomeCompleto: user.displayName,
+        //                 Email: user.email,
+        //                 TipoDeTreino: "indefinido"
+
+        //             }
+        //             ).then((credentials) => {
+        //                 get(child(dbref, 'UsersAuthListWithGoogle/' + user.displayName)).then((snapshot) => {
+        //                     console.log(snapshot.val());
+        //                     if (snapshot.exists) {
+        //                         sessionStorage.setItem("user-info", JSON.stringify({
+        //                             firstname: snapshot.val(),
+        //                         }))
+        //                         sessionStorage.setItem('user-credentials', JSON.stringify(user))
+        //                         setTimeout(() => { window.location.href = 'home.html' }, 100000)
+        //                     }
+        //                 })
+        //             })
+        //         })
+        //         .catch((error) => {
+        //             const errorCode = error.code;
+        //             const errorMessage = error.message;
+        //         })
+        // }
+
+
+
+        GoogleLogin.addEventListener('click', verificarUsuario)
+
+
+    </script>
+    <script src="./scripts/data.js"></script>
+</body>
+
+</html>

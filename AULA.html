@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aulas</title>
+
+    <script src="https://kit.fontawesome.com/7f190006d9.js" crossorigin="anonymous"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Changa:wght@200&family=Gothic+A1:wght@100&family=Koulen&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style/header_style.css">
+    <link rel="stylesheet" href="./style/Perfil_syle.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Koulen;
+            color: #004c7a;
+            letter-spacing: .1rem;
+        }
+
+        body {
+            background-image: radial-gradient(145.1% 113.8% at 50% 7.21%, #0084D4 0%, #003E63 100%);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: cover;
+            width: 100%;
+            height: 100vh;
+
+            /* color: #f0f8ff; */
+
+            /* overflow-x: hidden; */
+        }
+
+        .videoClass {
+            margin-top: 2rem;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0%);
+
+            width: 35rem;
+            height: 17.5rem;
+            flex-shrink: 0;
+            border-radius: 10% 10% 10% 10% / 25% 25% 25% 25%;
+
+            background: #4E4E4E;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreenBTN {
+            position: absolute;
+            bottom: 30px;
+            right: 100px;
+        }
+
+        .aulas {
+            position: fixed;
+            top: 0;
+            left: -40rem;
+
+            box-shadow: rgba(0, 0, 0, 0.534) 30px 0px 40px;
+
+            background-color: #0084D4;
+            background-color: linear-gradient(339deg, #68B7FF 0%, #1F444D 100%);
+            width: 30rem;
+            height: 100vh;
+
+            transition: left .2s ease-in;
+        }
+
+        .aulas h3 {
+            color: aliceblue;
+            width: 9rem;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+
+            font-size: 4rem;
+
+            user-select: none;
+
+        }
+
+        .aula_ativo {
+            left: 0rem;
+            transition: left .5s ease;
+
+        }
+
+        .classname {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* background-color: red; */
+            font-size: 2rem;
+
+            border-bottom: #1F444D .1rem solid;
+
+            user-select: none;
+        }
+
+        .classname li {
+            margin-top: 2rem;
+            margin: auto;
+            padding: 1rem;
+            list-style: none;
+        }
+
+        #SetaPraBaixo {
+            filter: drop-shadow(2px 1px 3px #1f1f1f);
+            transition: all .4s;
+
+        }
+
+        .subtitulo {
+
+            display: none;
+            transition: all .4s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <svg onclick="MenuAula()" class="OptionsBars" width="7vw" height="3rem" viewBox="0 0 64 64" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0 2C0 0.895431 0.895431 0 2 0H62C63.1046 0 64 0.895431 64 2C64 3.10457 63.1046 4 62 4H2C0.895431 4 0 3.10457 0 2Z"
+                    fill="#004C7A" />
+                <path
+                    d="M0 32C0 30.8954 0.895431 30 2 30H62C63.1046 30 64 30.8954 64 32C64 33.1046 63.1046 34 62 34H2C0.895431 34 0 33.1046 0 32Z"
+                    fill="#004C7A" />
+                <path
+                    d="M0 62C0 60.8954 0.895431 60 2 60H62C63.1046 60 64 60.8954 64 62C64 63.1046 63.1046 64 62 64H2C0.895431 64 0 63.1046 0 62Z"
+                    fill="#004C7A" />
+            </svg>
+
+            <A href="home.html"><img class="logo_eficienciaFIT" src="./images/logo_eficienciaFIT.png" alt=""></A>
+
+            <div onclick="classWindowOpen()" class="perfil">
+                <div class="foto_de_perfil_do_usuario_DIV">
+                    <img class="foto_de_perfil_do_usuario"
+                        src="https://lh3.googleusercontent.com/a/ACg8ocKVjCEiiZHU29Se_HHbG1LjH6Mjsg98oisK-0HbD0LR=s96-c"
+                        alt="">
+                </div>
+                <h3 class="nome_usuario"></h3>
+            </div>
+
+        </div>
+
+        <svg class="divider" width="75vw" viewBox="0 0 962 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="950" height="75" rx="1" fill="black" fill-opacity="0.23" />
+        </svg>
+
+    </header>
+
+    <div class="videoClass">
+
+        <svg width="3rem" height="117" viewBox="0 0 105 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M97.5 45.5096C107.5 51.2831 107.5 65.7169 97.5 71.4904L23.25 114.359C13.25 120.132 0.749994 112.915 0.749995 101.368L0.749998 15.6317C0.749999 4.08472 13.25 -3.13215 23.25 2.64136L97.5 45.5096Z"
+                fill="#666666" />
+        </svg>
+
+        <svg class="fullscreenBTN" width="2rem" height="47" viewBox="0 0 62 47" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 13C2 5.85567 3.87629 2 15 2" stroke="#666666" stroke-width="4" stroke-linecap="round" />
+            <path d="M47 2C55.4433 2 60 3.58763 60 13" stroke="#666666" stroke-width="4" stroke-linecap="round" />
+            <path d="M15 45C6.5567 45 2 43.4124 2 34" stroke="#666666" stroke-width="4" stroke-linecap="round" />
+            <path d="M60 34C60 41.1443 58.1237 45 47 45" stroke="#666666" stroke-width="4" stroke-linecap="round" />
+        </svg>
+
+    </div>
+
+    <div onclick="closeOptionsWindow()" class="blur_background"></div>
+    <div onclick="closeMenuAulas()" class="blur_background_2"></div>
+
+    <div class="window_opcoes_perfil">
+        <div class="close" onclick="closeOptionsWindow()">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0.775404 0.656739C-0.0671926 1.50136 0.190262 3.00292 0.424316 3.47216L21.4892 24.9397L0.7754 45.7035C0.190265 46.29 -0.628925 47.815 0.7754 49.2227C2.17973 50.6304 3.70108 49.8093 4.28621 49.2227L25 28.459L45.7138 49.2227C46.2989 49.692 47.8203 50.2785 49.2246 48.8708C50.6289 47.4631 49.8097 46.1727 49.2246 45.7035L28.5108 24.9397L49.2246 4.17602C49.5757 3.47216 49.997 1.78291 48.8735 0.656741C47.7501 -0.469427 46.0649 0.422122 45.3627 1.00867L25 21.4205C17.9784 14.4992 3.86492 0.586356 3.58405 0.304813C3.16346 -0.116792 1.618 -0.187888 0.775404 0.656739Z"
+                    fill="#ffffff" fill-opacity="0.34" />
+            </svg>
+        </div>
+        <div class="flex_options">
+            <div class="perfil">
+                <div class="foto_de_perfil_do_usuario_DIV">
+                    <img class="foto_de_perfil_do_usuario"
+                        src="https://lh3.googleusercontent.com/a/ACg8ocKVjCEiiZHU29Se_HHbG1LjH6Mjsg98oisK-0HbD0LR=s96-c"
+                        alt="">
+                </div>
+                <h3 class="nome_usuario options_name"></h3>
+            </div>
+            <div class="options_user">
+                <h1>configurações</h1>
+                <h1>feedback</h1>
+                <h1>seus dados</h1>
+                <button onclick="signout()" id="sign_out">
+                    <h1>sair</h1>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="aulas">
+        <h3>AULAS</h3>
+        <ul class="classname" onclick="abrirAulas(this)">
+            <li>Circuito Total - Aerobico <i id="SetaPraBaixo" class="fa-solid fa-chevron-down"></i></li>
+            <ul class="subtitulo">oia</ul>
+        </ul>
+        <ul class="classname" onclick="abrirAulas(this)">
+            <li>ElasticEnergy - Jumping <i id="SetaPraBaixo" class="fa-solid fa-chevron-down"></i></li>
+            <ul class="subtitulo">oia</ul>
+        </ul>
+        <ul class="classname" onclick="abrirAulas(this)">
+            <li>TangoTwist - zumba <i id="SetaPraBaixo" class="fa-solid fa-chevron-down"></i></li>
+            <ul class="subtitulo">oia</ul>
+        </ul>
+    </div>
+
+    <script src="/scripts/NomeEFoto.js"></script>
+    <script src="/scripts/AbrirPerfil.js"></script>
+    <script>
+
+        let menu = document.querySelector(".aulas")
+        let backgroundBlur2 = document.querySelector(".blur_background_2")
+        function MenuAula() {
+            backgroundBlur2.classList.add("turnOnBlur")
+            menu.classList.add("aula_ativo")
+        }
+        function closeMenuAulas() {
+            backgroundBlur2.classList.remove("turnOnBlur")
+            menu.classList.remove("aula_ativo")
+        }
+
+        let desc = "fechado"
+        function abrirAulas(elementoPai) {
+            if (desc == "fechado") {
+                console.log(elementoPai.children[0])
+                elementoPai.children[0].children[0].style.rotate = '-180deg'
+                elementoPai.children[1].style.display = "block"
+                return (desc = "aberto")
+
+            } else {
+                console.log(elementoPai.children[0])
+                elementoPai.children[0].children[0].style.rotate = '0deg'
+                elementoPai.children[1].style.display = "none"
+                return (desc = "fechado")
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

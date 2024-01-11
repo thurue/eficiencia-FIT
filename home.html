@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7f190006d9.js" crossorigin="anonymous"></script>
+    <title>PORTAL FIT</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Changa:wght@200&family=Gothic+A1:wght@100&family=Koulen&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Koulen;
+            color: #004c7a;
+            letter-spacing: .1rem;
+        }
+
+        body {
+            background-image: linear-gradient(45deg, #004874 -0.21%, #0084D4 99.86%);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: cover;
+            width: 100%;
+            height: 100vh;
+            /* width: 100%; */
+            /* height: 60rem; */
+            /* overflow-x: hidden; */
+        }
+
+        header {
+            /* height: 19vh; */
+            /* background-color: rgb(255, 0, 0); */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .navbar {
+            padding-top: 1rem;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            gap: 1rem;
+
+        }
+
+
+        .perfil {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* gap: .6rem; */
+        }
+
+        .perfil,
+        .OptionsBars {
+            transition: scale .4s;
+        }
+
+        .perfil:hover,
+        .OptionsBars:hover {
+            scale: 1.1;
+        }
+
+        .perfil img {
+            width: 6vw;
+            height: 6vw;
+            max-width: 3rem;
+            max-height: 3rem;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .logo_eficienciaFIT {
+
+            max-width: 20rem;
+            /* max-height: 4rem; */
+        }
+
+        .divider {
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .SOCIAL_page {
+
+            /* background-color: rgb(225, 255, 0); */
+            color: #ecb05e;
+            font-family: Koulen;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            width: 4rem;
+
+        }
+
+        .posts_aba {
+            /* background-color: rgba(0, 21, 255, 0.112); */
+            width: 100%;
+            height: 75vh;
+            position: fixed;
+            bottom: 0px;
+            overflow-y: scroll;
+        }
+
+        .post {
+            display: flex;
+            width: 85%;
+            padding: 2rem;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3.4rem;
+            border-radius: 1rem;
+            flex-shrink: 0;
+            background: #008EE2;
+        }
+
+
+        .top_post {
+            width: 100%;
+        }
+
+        .top_post,
+        .username_div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .foto_de_perfil {
+            width: 50px;
+            height: 50px;
+            background-color: #004c7a;
+            border-radius: 30%;
+        }
+
+        .username_post {
+            float: left;
+        }
+
+        .blur_background {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(10px);
+            opacity: 0%;
+            transition: all 1s;
+
+            pointer-events: none
+        }
+
+        .turnOnBlur {
+            opacity: 100%;
+            transition: all 1s;
+            pointer-events: all;
+        }
+
+        .flex_options,
+        .options_user {
+            height: 45rem;
+
+            /* background-color: #ecb05e; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+        }
+
+        .options_user {
+            /* background-color: #2da5b2; */
+            width: 23rem;
+            height: 35rem;
+            align-items: end;
+            align-items: right;
+
+        }
+
+        .options_user h1 {
+            font-family: 'Major Mono Display', monospace;
+            color: rgb(212, 212, 212);
+
+        }
+
+        #sign_out,
+        #sign_out h1 {
+            color: rgb(255, 79, 79);
+
+            background-color: rgba(173, 216, 230, 0);
+            border: 0px;
+            transition: scale .4s;
+        }
+
+        #sign_out h1:hover {
+            scale: 1.1;
+        }
+
+        #sign_out h1:active {
+            scale: .9;
+        }
+
+        .options_name {
+            color: white;
+        }
+
+        .window_opcoes_perfil {
+
+            position: fixed;
+            top: 0rem;
+            right: -50rem;
+
+            width: 30rem;
+            height: 50rem;
+            flex-shrink: 0;
+
+            border-radius: 0rem 0rem 0rem 6rem;
+            background: linear-gradient(201deg, #28065A 0%, #582DB2 99.63%);
+
+            box-shadow: rgba(0, 0, 0, 0.453) -10px 10px 50px;
+
+            overflow: hidden;
+
+            transition: all 1s ease;
+
+        }
+
+        .window_opcoes_perfil_movement {
+            right: 0rem;
+            top: 0rem;
+        }
+
+        .close {
+            float: right;
+            position: absolute;
+            margin: .5rem;
+            scale: .5;
+            fill: #ffffff;
+            transition: scale .4s;
+        }
+
+        .close:hover {
+            scale: .6;
+            opacity: 100%;
+        }
+
+        .close:active {
+            scale: .3;
+        }
+
+
+        .janela_nevegação {
+            font-size: 8vh;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            /* background-color: #582DB2; */
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(10px);
+            opacity: 0%;
+            transition: all 1s;
+
+            pointer-events: none
+        }
+
+        .janela_nevegação_aberta {
+            opacity: 100%;
+            pointer-events: all;
+
+        }
+
+        .janela_nevegação a {
+            text-decoration: none;
+        }
+
+        .janela_nevegação h3 {
+            transition: all 1s;
+            color: aliceblue;
+
+
+        }
+
+        .janela_nevegação h3:hover {
+            color: rgb(253, 238, 152);
+
+        }
+
+        @media screen and (width > 720px) {
+            .post {
+                display: flex;
+                width: 85%;
+                max-width: 40rem;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <svg onclick="OptionsBars()" class="OptionsBars" width="7vw" height="3rem" viewBox="0 0 64 64" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0 2C0 0.895431 0.895431 0 2 0H62C63.1046 0 64 0.895431 64 2C64 3.10457 63.1046 4 62 4H2C0.895431 4 0 3.10457 0 2Z"
+                    fill="#004C7A" />
+                <path
+                    d="M0 32C0 30.8954 0.895431 30 2 30H62C63.1046 30 64 30.8954 64 32C64 33.1046 63.1046 34 62 34H2C0.895431 34 0 33.1046 0 32Z"
+                    fill="#004C7A" />
+                <path
+                    d="M0 62C0 60.8954 0.895431 60 2 60H62C63.1046 60 64 60.8954 64 62C64 63.1046 63.1046 64 62 64H2C0.895431 64 0 63.1046 0 62Z"
+                    fill="#004C7A" />
+            </svg>
+
+            <img class="logo_eficienciaFIT" src="./images/logo_eficienciaFIT.png" alt="">
+
+            <div onclick="optionsWindow()" class="perfil">
+                <div class="foto_de_perfil_do_usuario_DIV">
+                    <img class="foto_de_perfil_do_usuario"
+                        src="https://lh3.googleusercontent.com/a/ACg8ocKVjCEiiZHU29Se_HHbG1LjH6Mjsg98oisK-0HbD0LR=s96-c"
+                        alt="">
+                </div>
+                <h3 class="nome_usuario"></h3>
+            </div>
+
+        </div>
+
+        <svg class="divider" width="75vw" viewBox="0 0 962 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="950" height="75" rx="1" fill="black" fill-opacity="0.23" />
+        </svg>
+
+    </header>
+    <h2 class="SOCIAL_page">SOCIAL</h2>
+
+    <div class="posts_aba">
+        <div class="post">
+
+            <div class="top_post">
+                <div class="username_div">
+                    <div class="foto_de_perfil"></div>
+                    <h3 class="username_post">Arthur seixas</h3>
+                </div>
+                <svg width="2rem" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="13" height="14" rx="6.5" transform="matrix(1 0 0 -1 0 14)" fill="#4A4A4A" />
+                    <rect width="14" height="14" rx="7" transform="matrix(1 0 0 -1 30 14)" fill="#4A4A4A" />
+                    <rect width="13" height="14" rx="6.5" transform="matrix(1 0 0 -1 61 14)" fill="#4A4A4A" />
+                </svg>
+
+            </div>
+
+            <div class="image_post">
+                <img src="" alt="teste">
+
+            </div>
+
+            <div class="text_post">
+                <p>teste</p>
+            </div>
+
+            <div class="likebutton_post">
+                <svg width="2rem" height="52" viewBox="0 0 60 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M31.5584 15.8134C31.5584 24.5469 24.4938 31.6269 15.7792 31.6269C7.0646 31.6269 0 24.5469 0 15.8134C0 7.07991 7.0646 0 15.7792 0C24.4938 0 31.5584 7.07991 31.5584 15.8134Z"
+                        fill="#FF0E0E" />
+                    <path
+                        d="M60 15.8134C60 24.5469 52.6737 31.6269 43.6364 31.6269C34.599 31.6269 27.2727 24.5469 27.2727 15.8134C27.2727 7.07991 34.599 0 43.6364 0C52.6737 0 60 7.07991 60 15.8134Z"
+                        fill="#FF0E0E" />
+                    <path
+                        d="M17.0635 15.2134C24.1005 8.20434 35.5098 8.20434 42.5469 15.2134L54.7403 27.3582L30 52L5.06493 27.1642L17.0635 15.2134Z"
+                        fill="#FF0E0E" />
+                </svg>
+
+            </div>
+        </div>
+    </div>
+
+    <div onclick="closeOptionsWindow()" class=" blur_background"></div>
+
+    <div class="window_opcoes_perfil">
+        <div class="close" onclick="closeOptionsWindow()">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0.775404 0.656739C-0.0671926 1.50136 0.190262 3.00292 0.424316 3.47216L21.4892 24.9397L0.7754 45.7035C0.190265 46.29 -0.628925 47.815 0.7754 49.2227C2.17973 50.6304 3.70108 49.8093 4.28621 49.2227L25 28.459L45.7138 49.2227C46.2989 49.692 47.8203 50.2785 49.2246 48.8708C50.6289 47.4631 49.8097 46.1727 49.2246 45.7035L28.5108 24.9397L49.2246 4.17602C49.5757 3.47216 49.997 1.78291 48.8735 0.656741C47.7501 -0.469427 46.0649 0.422122 45.3627 1.00867L25 21.4205C17.9784 14.4992 3.86492 0.586356 3.58405 0.304813C3.16346 -0.116792 1.618 -0.187888 0.775404 0.656739Z"
+                    fill="#ffffff" fill-opacity="0.34" />
+            </svg>
+        </div>
+        <div class="flex_options">
+            <div class="perfil">
+                <div class="foto_de_perfil_do_usuario_DIV">
+                    <img class="foto_de_perfil_do_usuario"
+                        src="https://lh3.googleusercontent.com/a/ACg8ocKVjCEiiZHU29Se_HHbG1LjH6Mjsg98oisK-0HbD0LR=s96-c"
+                        alt="">
+                </div>
+                <h3 class="nome_usuario options_name"></h3>
+            </div>
+            <div class="options_user">
+                <h1>configurações</h1>
+                <h1>feedback</h1>
+                <h1>seus dados</h1>
+                <button onclick="signout()" id="sign_out">
+                    <h1>sair</h1>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="janela_nevegação">
+
+        <a class="refresh">
+            <h3>SOCIAL</h3>
+        </a>
+        <a href="AULA.html">
+            <h3>AULAS</h3>
+        </a>
+        <a href="exercicio.html">
+            <h3>EXERCICIOS</h3>
+        </a>
+
+    </div>
+
+    <script>
+
+        // informações do usuario em variaveis
+        let userCred = JSON.parse(sessionStorage.getItem('user-credentials'))
+        let userinfo = JSON.parse(sessionStorage.getItem('user-info'))
+
+        // mudar o nome de usuario variaveis
+        let nome = userinfo.firstname.NomeCompleto.split(" ");
+        let username = document.querySelectorAll('.nome_usuario')
+        console.log(username)
+
+        // variaveis para alterar a foto de perfil
+        let foto_de_perfil_default = './images/foto_de_perfil_default.png'
+        let fotoSRC = userCred.photoURL
+
+        let backgroundBlur = document.querySelector(".blur_background")
+        let openWindow = document.querySelector(".window_opcoes_perfil")
+
+        //transformar todas as variaveis de nome no nickname
+        username.forEach(name => {
+            name.innerText = nome[0]
+        });
+
+        // transformar a foto em foto do google se for possivel
+
+        let divFoto = document.querySelectorAll(".foto_de_perfil_do_usuario")
+
+        if (userCred.photoURL) {
+            divFoto.forEach(foto => {
+                foto.src = fotoSRC
+            });
+        } else {
+            divFoto.forEach(foto => {
+                foto.src = foto_de_perfil_default
+            });
+        }
+        //botão de desligar, remove a conta e os do navegador
+        function signout() {
+            sessionStorage.clear()
+            setTimeout(() => { window.location.href = 'login.html' }, 500)
+
+        }
+
+        //abre o menu de opções
+        function optionsWindow() {
+            backgroundBlur.classList.add("turnOnBlur")
+            openWindow.classList.add("window_opcoes_perfil_movement")
+        }
+        // fecha o menu de opções
+        function closeOptionsWindow() {
+            backgroundBlur.classList.remove("turnOnBlur")
+            openWindow.classList.remove("window_opcoes_perfil_movement")
+        }
+
+        //abre o menu de opções
+
+        let JanelaDeNavegação = document.querySelector(".janela_nevegação")
+        function OptionsBars() {
+            JanelaDeNavegação.classList.add("janela_nevegação_aberta")
+        }
+
+        //refresh page
+        let btn = document.querySelector(".refresh")
+
+        btn.addEventListener('click', () => {
+            location.reload()
+        })
+    </script>
+</body>
+
+</html>

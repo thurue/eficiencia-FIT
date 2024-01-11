@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aulas</title>
+
+    <script src="https://kit.fontawesome.com/7f190006d9.js" crossorigin="anonymous"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Changa:wght@200&family=Gothic+A1:wght@100&family=Koulen&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style/header_style.css">
+    <link rel="stylesheet" href="./style/Perfil_syle.css">
+
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Koulen;
+            color: #004c7a;
+            letter-spacing: .1rem;
+        }
+
+        body {
+            background-image: radial-gradient(145.1% 113.8% at 50% 7.21%, #0084D4 0%, #003E63 100%);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: cover;
+            width: 100%;
+            height: 100vh;
+
+            /* color: #f0f8ff; */
+
+            /* overflow-x: hidden; */
+        }
+        .Selecionar_tipo_De_treino{
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div onclick="closeOptionsWindow()" class="blur_background_Treino"></div>
+    <div class="Selecionar_tipo_De_treino"></div>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, get, child, set, ref } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmtng-wk0NNawnBfXLkHHg4qLhonSiVZ4",
+            authDomain: "portal-f41d4.firebaseapp.com",
+            databaseURL: "https://portal-f41d4-default-rtdb.firebaseio.com",
+            projectId: "portal-f41d4",
+            storageBucket: "portal-f41d4.appspot.com",
+            messagingSenderId: "818353305477",
+            appId: "1:818353305477:web:2ff5be76fc19d76aabb6ec",
+            measurementId: "G-FNG514GWPW"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+        const dbref = ref(db);
+
+        
+
+
+    </script>
+</body>
+
+</html>
